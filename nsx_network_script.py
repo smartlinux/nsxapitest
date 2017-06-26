@@ -13,34 +13,45 @@ from nsx_network_input import *
 
 restclient = rest.Rest(NSX_IP, NSX_USER, NSX_PWD, True)
 
+
 def listNetworks():
     respData = restclient.get(NSX_URL+'/api/2.0/vdn/virtualwires', 'listNetworks')
-    output('listNetworks', restclient.getDebugInfo() + restclient.prettyPrint(respData))
+    output(restclient.getDebugInfo() + restclient.prettyPrint(respData), 'listNetworks')
+
 
 def getNetwork():
     respData = restclient.get(NSX_URL+'/api/2.0/vdn/virtualwires/'+NSX_NETWORK_GET_ID, 'getNetwork')
-    output('getNetwork', restclient.getDebugInfo() + restclient.prettyPrint(respData))
+    output(restclient.getDebugInfo() + restclient.prettyPrint(respData), 'getNetwork')
+
 
 def createNetwork():
-    pass
+    respData = restclient.post(NSX_URL+'/api/2.0/vdn/scopes/'+NSX_NETWORK_CREATE_SCOPE_ID+'/virtualwires', 
+        NSX_NETWORK_CREATE_REQ_BODY, 'createNetwork')
+    output(restclient.getDebugInfo() + restclient.prettyPrint(respData), 'createNetwork')
+
 
 def updateNetwork():
-    pass
+    respData = restclient.put(NSX_URL+'/api/2.0/vdn/virtualwires/'+NSX_NETWORK_UPDATE_ID,
+        NSX_NETWORK_UPDATE_REQ_BODY, 'updateNetwork')
+    output(restclient.getDebugInfo() + restclient.prettyPrint(respData), 'updateNetwork')
+
 
 def deleteNetwork():
-    pass
+    respData = restclient.delete(NSX_URL+'/api/2.0/vdn/virtualwires/'+NSX_NETWORK_DELETE_ID, 'deleteNetwork')
+    output(restclient.getDebugInfo() + restclient.prettyPrint(respData), 'deleteNetwork')
 
-def output(caller, msg):
+
+def output(msg, caller):
     f = file(datetime.datetime.now().strftime("log/nsx_" + caller + "_output_20%y%m%d%H%M%S.log"), "w")
     f.write(msg)
     f.close()	
 
+
 def usage():
-    """usage()"""
     print "Usage:", sys.argv[0], "--case <createNetwork|listNetworks|getNetwork|updateNetwork|deleteNetwork>"
 
+
 def main():
-    
     testcase = None
     try:
         opts, args = getopt.getopt(sys.argv[1:], "?", ["help", "case="])
