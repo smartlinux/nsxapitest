@@ -282,10 +282,10 @@ class Rest:
             return xml
 
     #
-    # callback for pycurl debug information, only need to record type 1(HEADER_IN) and 2(HEADER_OUT) messages.
+    # callback for pycurl debug information, only need to record type 1(HEADER_IN),2(HEADER_OUT),4(DATA_OUT) messages.
     #
     def debug(self, debug_type, debug_msg):
-        if debug_type in [1,2]:
+        if debug_type in [1,2,4]:
             self.debuginfo += debug_msg
 
     #
