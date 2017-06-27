@@ -3,7 +3,7 @@
 #
 # Test script for network function.
 # 
-# Below is mapping relationship between CT test spec and NSX API:
+# Network map to NSX Logincal Switch, below is attributes mapping relationship:
 #   ID(objectId)、名称(name)、管理状态()、状态()、是否共享(isUniversal)、租户ID(tenantId)
 #   网络类型(backingType)、物理网络(vdsContextWithBacking)、vlanID(vlanId/vdnId)、qos规则ID(inShapingPolicy/outShapingPolicy/qosTag)
 #
@@ -12,7 +12,6 @@ import sys
 import getopt
 import datetime
 import libxml2
-import json
 import ssl
 import atexit
 import rest
