@@ -1,15 +1,27 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 #
 # Test script for network function.
+# 
+# Below is mapping relationship between CT test spec and NSX API:
+#   ID(objectId)、名称(name)、管理状态()、状态()、是否共享(isUniversal)、租户ID(tenantId)
+#   网络类型(backingType)、物理网络(vdsContextWithBacking)、vlanID(vlanId/vdnId)、qos规则ID(inShapingPolicy/outShapingPolicy/qosTag)
 #
 
 import sys
 import getopt
 import datetime
+import libxml2
+import json
+import ssl
+import atexit
 import rest
 
 from nsx_basic_input import *
 from nsx_network_input import *
+
+from pyVim.connect import SmartConnect, Disconnect
+from pyVmomi import vim
 
 restclient = rest.Rest(NSX_IP, NSX_USER, NSX_PWD, True)
 
@@ -21,7 +33,16 @@ def listNetworks():
 
 def getNetwork():
     respData = restclient.get(NSX_URL+'/api/2.0/vdn/virtualwires/'+NSX_NETWORK_GET_ID, 'getNetwork')
-    output(restclient.getDebugInfo() + restclient.prettyPrint(respData), 'getNetwork')
+    outputstr = restclient.getDebugInfo() + restclient.prettyPrint(respData)
+    
+    outputstr += "\nBacking network info by vSphere API:\n"
+    respDoc = libxml2.parseDoc(respData)
+    xp = respDoc.xpathNewContext()
+    nodes = xp.xpathEval("//virtualWire/vdsContextWithBacking/backingValue")
+    for n in nodes:
+        portgroupid = n.content.strip()
+        outputstr += getPortGroupInfo(portgroupid)
+    output(outputstr, 'getNetwork')
 
 
 def createNetwork():
@@ -39,6 +60,25 @@ def updateNetwork():
 def deleteNetwork():
     respData = restclient.delete(NSX_URL+'/api/2.0/vdn/virtualwires/'+NSX_NETWORK_DELETE_ID, 'deleteNetwork')
     output(restclient.getDebugInfo() + restclient.prettyPrint(respData), 'deleteNetwork')
+
+
+def getPortGroupInfo(portgroupid):
+    context = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
+    context.verify_mode = ssl.CERT_NONE
+    serviceInstance = SmartConnect(host=VC_IP, user=VC_USER, pwd=VC_PWD, port=443, sslContext=context)
+    atexit.register(Disconnect, serviceInstance)
+    content = serviceInstance.RetrieveContent()
+
+    dpg_view = content.viewManager.CreateContainerView(content.rootFolder,[vim.dvs.DistributedVirtualPortgroup],True)
+    dpgs = [dpg for dpg in dpg_view.view]
+    dpg_view.Destroy()
+
+    for dpg in dpgs:
+        # print("Found DPG:", dpg.key)
+        if dpg.key == portgroupid:
+            return str(dpg.config.defaultPortConfig)
+
+    return 'Cannot find portgroup, id: ' + portgroupid
 
 
 def output(msg, caller):
