@@ -27,7 +27,7 @@ restclient = rest.Rest(NSX_IP, NSX_USER, NSX_PWD, True)
 
 def deleteSecurityGroup():
     respData = restclient.delete(NSX_URL+'/api/2.0/services/securitygroup/'+NSX_SECURITYGROUP_DELETE_ID, 'deleteSecurityGroup')
-    output(restclient.getDebugInfo() + restclient.prettyPrint(respData), 'deleteSecurityGroup')
+    output(restclient.getDebugInfo() + restclient.prettyPrint(respData))
 
 
 
