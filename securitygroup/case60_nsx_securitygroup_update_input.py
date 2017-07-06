@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 #
 # SecurityGroup function test configration of NSX & vSphere environment.
 #
@@ -8,7 +9,7 @@ NSX_SECURITYGROUP_UDPATE_ID = 'securitygroup-10'
 # updateSecurityGroup test case configuration
 
 
-#revison后面的数字可能需要根据实际情况修改
+# revison后面的数字可能需要根据实际情况修改
 
 NSX_SECURITYGROUP_UPDATE_REQ_BODY = '''
     <securitygroup>
