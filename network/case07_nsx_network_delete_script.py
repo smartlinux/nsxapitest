@@ -20,7 +20,7 @@ restclient = rest.Rest(NSX_IP, NSX_USER, NSX_PWD, True)
 
 
 def deleteNetwork():
-    respData = restclient.delete(NSX_URL+'/api/2.0/vdn/virtualwires/'+NSX_NETWORK_DELETE_ID, 'deleteNetwork')
+    respData = restclient.delete(NSX_URL+'/api/2.0/vdn/virtualwires/'+NSX_NETWORK_ID, 'deleteNetwork')
     output(restclient.getDebugInfo() + restclient.prettyPrint(respData))
 
 

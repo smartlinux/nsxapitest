@@ -20,7 +20,7 @@ restclient = rest.Rest(NSX_IP, NSX_USER, NSX_PWD, True)
 
 
 def updateNetwork():
-    respData = restclient.put(NSX_URL+'/api/2.0/vdn/virtualwires/'+NSX_NETWORK_UPDATE_ID,
+    respData = restclient.put(NSX_URL+'/api/2.0/vdn/virtualwires/'+NSX_NETWORK_ID,
         NSX_NETWORK_UPDATE_REQ_BODY, 'updateNetwork')
     output(restclient.getDebugInfo() + restclient.prettyPrint(respData))
 

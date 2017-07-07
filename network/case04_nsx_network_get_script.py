@@ -28,7 +28,7 @@ restclient = rest.Rest(NSX_IP, NSX_USER, NSX_PWD, True)
 
 
 def getNetwork():
-    respData = restclient.get(NSX_URL+'/api/2.0/vdn/virtualwires/'+NSX_NETWORK_GET_ID, 'getNetwork')
+    respData = restclient.get(NSX_URL+'/api/2.0/vdn/virtualwires/'+NSX_NETWORK_ID, 'getNetwork')
     outputstr = restclient.getDebugInfo() + restclient.prettyPrint(respData)
     
     outputstr += "\nBacking network info by vSphere API:\n"
