@@ -5,7 +5,7 @@
 #
 
 # NSX Edge ID, 可在web client-> NSX Edges界面找到
-NSX_ROUTER_ID = 'edge-7'
+NSX_EDGE_ID = 'edge-7'
 
 # 要创建的 floatingIP 信息
 NSX_FLOATINGIP_CREATE_REQ_BODY = '''

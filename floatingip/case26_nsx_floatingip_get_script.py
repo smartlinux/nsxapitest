@@ -22,7 +22,7 @@ restclient = rest.Rest(NSX_IP, NSX_USER, NSX_PWD, True)
 
 
 def getFloatingIP():
-    respData = restclient.get('%s/api/4.0/edges/%s/nat/config'%(NSX_URL,NSX_ROUTER_ID), 'getFloatingIP')
+    respData = restclient.get('%s/api/4.0/edges/%s/nat/config'%(NSX_URL,NSX_EDGE_ID), 'getFloatingIP')
     outputStr = (restclient.getDebugInfo() + restclient.prettyPrint(respData))
 
     respDoc = libxml2.parseDoc(respData)

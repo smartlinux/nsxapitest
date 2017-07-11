@@ -22,10 +22,10 @@ restclient = rest.Rest(NSX_IP, NSX_USER, NSX_PWD, True)
 
 
 def listFloatingIPs():
-    respData = restclient.get('%s/api/4.0/edges/%s/nat/config'%(NSX_URL,NSX_ROUTER_ID), 'listFloatingIPs')
+    respData = restclient.get('%s/api/4.0/edges/%s/nat/config'%(NSX_URL,NSX_EDGE_ID), 'listFloatingIPs')
     outputStr = (restclient.getDebugInfo() + restclient.prettyPrint(respData))
 
-    respData = restclient.get('%s/api/4.0/edges/%s'%(NSX_URL,NSX_ROUTER_ID), 'listFloatingIPs')
+    respData = restclient.get('%s/api/4.0/edges/%s'%(NSX_URL,NSX_EDGE_ID), 'listFloatingIPs')
     outputStr += (restclient.getDebugInfo() + restclient.prettyPrint(respData))
 
     output(outputStr)

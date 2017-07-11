@@ -20,7 +20,7 @@ restclient = rest.Rest(NSX_IP, NSX_USER, NSX_PWD, True)
 def deleteFloatingIP():
     outputStr = ''
     for ruleId in NSX_NAT_RULE_ID_LIST:
-        respData = restclient.delete('%s/api/4.0/edges/%s/nat/config/rules/%s'%(NSX_URL,NSX_ROUTER_ID, ruleId), 'deleteFloatingIP')
+        respData = restclient.delete('%s/api/4.0/edges/%s/nat/config/rules/%s'%(NSX_URL,NSX_EDGE_ID, ruleId), 'deleteFloatingIP')
         outputStr += (restclient.getDebugInfo() + restclient.prettyPrint(respData))
 
     output(outputStr)

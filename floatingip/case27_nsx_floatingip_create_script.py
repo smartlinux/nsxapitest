@@ -18,7 +18,7 @@ restclient = rest.Rest(NSX_IP, NSX_USER, NSX_PWD, True)
 
 
 def createFloatingIP():
-    respData = restclient.post('%s/api/4.0/edges/%s/nat/config/rules'%(NSX_URL,NSX_ROUTER_ID), 
+    respData = restclient.post('%s/api/4.0/edges/%s/nat/config/rules'%(NSX_URL,NSX_EDGE_ID), 
         NSX_FLOATINGIP_CREATE_REQ_BODY, 'createFloatingIP')
     output(restclient.getDebugInfo() + restclient.prettyPrint(respData))
 

@@ -25,6 +25,16 @@ def listTransZones():
     print(restclient.prettyPrint(respData))
 
 
+# single IP example: 192.168.100.2
+def isSingleIp(address):
+    return not isIpRange(address)
+
+
+# IP Range example: 192.168.10.1-192.168.10.2555, or a subnet in CIDR notation (198.168.10.1/24)
+def isIpRange(address):
+    return address.find('-')>0 or address.find('/')>0
+
+
 def usage():
     print "Usage:", sys.argv[0], "--api <listTransZones>"
 
