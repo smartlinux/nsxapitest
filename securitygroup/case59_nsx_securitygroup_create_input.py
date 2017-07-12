@@ -9,24 +9,28 @@
 # createSecurityGroup test case configuration
 
 NSX_SECURITYGROUP_CREATE_REQ_BODY = '''
-    <securitygroup>
-    
-        <objectTypeName>SecurityGroup</objectTypeName>
+<securityPolicy>
 
-        <type>
-            <typeName>SecurityGroup</typeName>
-        </type>
-        <name>Newgroup</name>
-        <description></description>
-        <scope>
-            <id>globalroot-0</id>
-            <objectTypeName>GlobalRoot</objectTypeName>
-            <name>Global</name>
-        </scope>
-        <clientHandle></clientHandle>
-        <extendedAttributes/>
-        <isUniversal>false</isUniversal>
-        <universalRevision>0</universalRevision>
-        <inheritanceAllowed>false</inheritanceAllowed>
-    </securitygroup>
+    <objectTypeName>Policy</objectTypeName>
+
+
+    <type>
+        <typeName>Policy</typeName>
+    </type>
+    <name>SP100</name>
+    <description></description>
+    <scope>
+        <id>globalroot-0</id>
+        <objectTypeName>GlobalRoot</objectTypeName>
+        <name>Global</name>
+    </scope>
+    <clientHandle></clientHandle>
+    <extendedAttributes/>
+    <isUniversal>false</isUniversal>
+    <universalRevision>0</universalRevision>
+    <inheritanceAllowed>false</inheritanceAllowed>
+    <precedence>4500</precedence>
+</securityPolicy>
+
+
 '''

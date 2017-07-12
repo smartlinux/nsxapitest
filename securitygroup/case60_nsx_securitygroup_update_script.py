@@ -22,14 +22,13 @@ from case60_nsx_securitygroup_update_input import *
 from pyVim.connect import SmartConnect, Disconnect
 from pyVmomi import vim
 
-SCOPEID = 'globalroot-0'  
-#For the scopeId use globalroot-0 for non-universal security groups and universalroot-0 for universal security groups.
+
 caseName = 'case60_nsx_securitygroup_update'
 restclient = rest.Rest(NSX_IP, NSX_USER, NSX_PWD, True)
 
 
 def updateSecurityGroup():
-    respData = restclient.put(NSX_URL+'/api/2.0/services/securitygroup/'+NSX_SECURITYGROUP_UDPATE_ID,
+    respData = restclient.put(NSX_URL+'/api/2.0/services/policy/securitypolicy/'+NSX_SECURITYGROUP_UDPATE_ID,
         NSX_SECURITYGROUP_UPDATE_REQ_BODY, 'updateSecurityGroup')
     output(restclient.getDebugInfo() + restclient.prettyPrint(respData))
 

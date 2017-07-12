@@ -5,4 +5,4 @@
 #
 
 
-NSX_SECURITYGROUP_GET_ID ='securitygroup-10'
+NSX_SECURITYGROUP_GET_ID ='policy-5'

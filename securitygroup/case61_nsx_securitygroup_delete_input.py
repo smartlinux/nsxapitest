@@ -5,4 +5,4 @@
 #
 
 
-NSX_SECURITYGROUP_DELETE_ID ='securitygroup-11'
+NSX_SECURITYGROUP_DELETE_ID ='policy-9'
