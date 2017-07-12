@@ -8,7 +8,7 @@
 # NSX Edge ID, 可在web client-> NSX Edges界面找到
 NSX_FIREWALL_ID = 'edge-7'
 
-
+# 管理状态(enabled)、描述()、防火墙策略ID(defaultPolicy)、防火墙ID()
 NSX_FIREWALL_UPDATE_DATA = '''
 <firewall>
   <enabled>false</enabled>
