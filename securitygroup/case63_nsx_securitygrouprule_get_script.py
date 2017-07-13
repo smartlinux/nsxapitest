@@ -28,9 +28,18 @@ restclient = rest.Rest(NSX_IP, NSX_USER, NSX_PWD, True)
 
 
 def getSecurityGroupRule():
-    respData = restclient.get(NSX_URL+'/api/2.0/services/policy/securitypolicy/'+NSX_SECURITYGROUP_GET_ID, 'getSecurityGroupRule')
+    respData = restclient.get(NSX_URL+'/api/2.0/services/policy/securitypolicy/'+NSX_SECURITYGROUP_GET_ID+'/securityactions', 'getSecurityGroupRule')
+    respDoc = libxml2.parseDoc(respData)
+    xp = respDoc.xpathNewContext()
 
-    output(restclient.getDebugInfo() + restclient.prettyPrint(respData))
+    ruleNodes = xp.xpathEval("//actionsByCategory/action")
+    for rule in ruleNodes:
+        xp.setContextNode(rule)
+        objectId = xp.xpathEval("objectId")[0].getContent()
+
+        if objectId == NSX_RULE_GET_ID:
+            output(restclient.getDebugInfo() + rule.serialize('UTF-8', 1) + '\n')
+            break
 
 
 
