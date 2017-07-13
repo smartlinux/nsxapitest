@@ -4,6 +4,8 @@
 # securitygroup function test configration of NSX & vSphere environment.
 #
 
-
+#指定securitygroup ID
 NSX_SECURITYGROUP_GET_ID ='policy-5'
+
+#指定需要获取的rule ID
 NSX_RULE_GET_ID ='firewallpolicyaction-5'
