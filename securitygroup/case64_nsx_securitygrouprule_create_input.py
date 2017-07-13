@@ -10,6 +10,7 @@ NSX_SECURITYGROUP_ID = 'policy-5'
 
 
 # revison后面的数字可能需要根据实际情况修改，只能大于等于原来的版本号
+# 获取security group（policy）后，根据需要添加的rule修改消息体
 
 NSX_SECURITYGROUP_UPDATE_REQ_BODY = '''
 <?xml version="1.0" encoding="UTF-8"?>
