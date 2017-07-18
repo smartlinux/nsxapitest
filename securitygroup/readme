@@ -1,0 +1,5 @@
+1: securitygroupid: 取自securitypolily的objectId字段，格式为policy-*,如policy-8。
+2: revision字段：  表示了某对象的版本，在修改对象时，revision的值不能小于原来的值。
+3： rule 的id： 取自action的objectID, 例如firewallpolicyaction-10。
+4： 源地址与目的地址： rule在配置时，可以配置一个地址，另外一个地址是用来binding的。
+  查询到rule后，根据方向inbound/outbound可以判断地址是源地址还是目的地址。 
