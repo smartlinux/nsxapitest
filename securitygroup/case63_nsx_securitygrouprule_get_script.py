@@ -31,17 +31,19 @@ def getSecurityGroupRule():
     respData = restclient.get(NSX_URL+'/api/2.0/services/policy/securitypolicy/'+NSX_SECURITYGROUP_GET_ID+'/securityactions', 'getSecurityGroupRule')
     respDoc = libxml2.parseDoc(respData)
     xp = respDoc.xpathNewContext()
-
+    found = False
     ruleNodes = xp.xpathEval("//actionsByCategory/action")
     for rule in ruleNodes:
         xp.setContextNode(rule)
         objectId = xp.xpathEval("objectId")[0].getContent()
 
         if objectId == NSX_RULE_GET_ID:
+            found = True
             output(restclient.getDebugInfo() + rule.serialize('UTF-8', 1) + '\n')
             break
 
-
+    if found == False:
+        output(NSX_SECURITYGROUP_GET_ID+':'+NSX_RULE_GET_ID+' is not found\n');
 
 
 def output(msg):
