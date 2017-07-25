@@ -10,7 +10,9 @@ NSX_SECURITYGROUP_ID = 'policy-5'
 
 
 # revison后面的数字可能需要根据实际情况修改，只能大于等于原来的版本号
-# 获取security group（policy）后，根据需要添加的rule修改消息体
+# 获取security group（NSX中的security policy）后，根据需要添加的rule修改消息体，然后调用put消息完成rule的添加
+# 添加的消息结构标识 <action class="firewallSecurityAction">
+# 本次测试只针对Firewall rules
 
 NSX_SECURITYGROUP_UPDATE_REQ_BODY = '''
 <?xml version="1.0" encoding="UTF-8"?>
