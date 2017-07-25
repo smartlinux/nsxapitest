@@ -213,7 +213,7 @@ class Rest:
     # generic PUT to the give url using the request
     # provided, returning the result
     #
-    def put(self, url, request, caller):
+    def put(self, url, request, caller, moreHeaders=None):
         """put(url, request, caller)"""
         if self.verbose and len(request):
             print >> sys.stderr, "PUT REQUEST:"
@@ -224,7 +224,7 @@ class Rest:
         putbuf.write(request)
         putbuf.seek(0)
 
-        cobj = self.newCurlPut(url)
+        cobj = self.newCurlPut(url, moreHeaders)
         cobj.setopt(pycurl.WRITEFUNCTION, buf.write)
         cobj.setopt(pycurl.READFUNCTION, putbuf.read)
         try:
