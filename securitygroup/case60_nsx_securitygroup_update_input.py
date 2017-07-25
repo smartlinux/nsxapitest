@@ -3,6 +3,7 @@
 #
 # SecurityGroup function test configration of NSX & vSphere environment.
 #
+#securiyt group (nsx中的security policy) ID需要通过list测试来获取
 
 NSX_SECURITYGROUP_UDPATE_ID = 'policy-9'
 
@@ -10,6 +11,7 @@ NSX_SECURITYGROUP_UDPATE_ID = 'policy-9'
 
 
 # revison后面的数字可能需要根据实际情况修改，只能大于等于原来的版本号
+# 消息体在get的基础上进行修改，然后作为新的消息体
 
 NSX_SECURITYGROUP_UPDATE_REQ_BODY = '''
 <securityPolicy>
