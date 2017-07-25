@@ -41,14 +41,12 @@ def listPorts():
     xp = respDoc.xpathNewContext()
     nodes = xp.xpathEval("//virtualWires/dataPage/virtualWire")
     ports = []
-    i = 0
     for ls in nodes:
         xp.setContextNode(ls)
-        lsId = xp.xpathEval("//virtualWire/objectId")[i].content
-        lsName = xp.xpathEval("//virtualWire/name")[i].content
-        tenantId = xp.xpathEval("//virtualWire/tenantId")[i].content
-        dpgId = xp.xpathEval("//virtualWire/vdsContextWithBacking/backingValue")[i].content
-        i += 1
+        lsId = xp.xpathEval("objectId")[0].content
+        lsName = xp.xpathEval("name")[0].content
+        tenantId = xp.xpathEval("tenantId")[0].content
+        dpgId = xp.xpathEval("vdsContextWithBacking/backingValue")[0].content
 
         dpg = dpgMap[dpgId]
         if dpg == None:
