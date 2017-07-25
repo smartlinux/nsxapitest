@@ -7,7 +7,7 @@ This is for demo nsx api. Code by python
 3. 准备好用于测试的VM，要求如下：
 	 1> linux环境，已安装 python2.7.*
 	 2> 安装python包：lxml, pycurl, pyvmomi，如何安装请参考
-	    	https://pypi.python.org/pypi/lxml/3.8.0
+		https://pypi.python.org/pypi/lxml/3.8.0
 		https://pypi.python.org/pypi/pycurl 
 		https://pypi.python.org/pypi/pyvmomi
 4. 下载该测试脚本到测试VM，在nsx_basic_input.py中配置vCenter的用户名和密码(administrator@vsphere.local)和NSX API的用户名和密码(用第2步创建的，禁止使用admin)
