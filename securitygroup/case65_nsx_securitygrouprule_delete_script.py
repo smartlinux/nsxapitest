@@ -28,8 +28,20 @@ restclient = rest.Rest(NSX_IP, NSX_USER, NSX_PWD, True)
 
 
 def deleteSecurityGroupRule():
+    respData = restclient.get(NSX_URL+'/api/2.0/services/policy/securitypolicy/'+NSX_SECURITYGROUP_ID, 'getSecurityGroup')
+    respDoc = libxml2.parseDoc(respData)
+    xp = respDoc.xpathNewContext()
+    ruleNodes = xp.xpathEval("//actionsByCategory/action")
+    for rule in ruleNodes:
+        xp.setContextNode(rule)
+        objectId = xp.xpathEval("objectId")[0].getContent()
+
+        if objectId == NSX_RULE_DEL_ID:
+            rule.unlinkNode()
+            break
+    respData = respDoc.serialize('UTF-8', 1)
     respData = restclient.put(NSX_URL+'/api/2.0/services/policy/securitypolicy/'+NSX_SECURITYGROUP_ID,
-        NSX_SECURITYGROUP_UPDATE_REQ_BODY, 'deleteSecurityGroupRule')
+        respData, 'deleteSecurityGroupRule')
     output(restclient.getDebugInfo() + restclient.prettyPrint(respData))
 
 
