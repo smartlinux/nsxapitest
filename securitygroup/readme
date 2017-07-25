@@ -1,5 +1,12 @@
+本次测试的securitygroup对象，在NSX中实际应该为securitypolicy
+
+
 1: securitygroupid: 取自securitypolily的objectId字段，格式为policy-*,如policy-8。
 2: revision字段：  表示了某对象的版本，在修改对象时，revision的值不能小于原来的值。
 3： rule 的id： 取自action的objectID, 例如firewallpolicyaction-10。
-4： 源地址与目的地址： rule在配置时，可以配置一个地址，另外一个地址是用来binding的。
+4： rule 的源地址与目的地址： rule在配置时，可以配置一个地址，另外一个地址是用来binding的（未bind之前是空的）。
   查询到rule后，根据方向inbound/outbound可以判断地址是源地址还是目的地址。 
+5： rule的添加与删除实际上是通过对securitygroup的修改来完成的
+6： ID通常需要通过list操作来获得
+7： 修改时需要的body需要先get，然后在get到的body上修改作为新的body。同样create时，可以用get到的body作为模板修改后使用。
+
