@@ -3,7 +3,7 @@ This is for demo nsx api. Code by python
 
 该脚本仅供测试使用，执行环境准备如下：
 1. 准备好待测对象：vShpere5.5 + NSX6.3 测试环境
-2. 创建用于NSX API测试的用户，先在webClient->Administration->Users中创建用户，然后去webClient->NSXManager->Manage->Users处添加。
+2. 创建用于NSX API测试的用户，先在webClient->Administration->Users中创建用户，然后去webClient->NSXManager->Manage->Users处添加, 角色选Enterprise Administrator。
 3. 准备好用于测试的VM，要求如下：
 	 1> linux环境，已安装 python2.7.*
 	 2> 安装python包：lxml, pycurl, pyvmomi，如何安装请参考
