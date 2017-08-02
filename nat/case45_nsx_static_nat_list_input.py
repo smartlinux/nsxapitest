@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 #
 # NAT function test configration of NSX & vSphere environment.
-# Address 一对一为 Static NAT
+# Static NAT: 仅用address来映射，不用port来映射
 
 # NSX Edge ID, 可在web client-> NSX Edges界面找到
-NSX_EDGE_ID = 'edge-9'
+NSX_EDGE_ID = 'edge-2'
 

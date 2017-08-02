@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Test script for NAT function.
-# 
+# Static NAT: 仅用address来映射，不用port来映射
 
 import sys
 import datetime
@@ -30,9 +30,9 @@ def listStaticNATs():
     for rule in rules:
         xp.setContextNode(rule)
         action = xp.xpathEval("action")[0].getContent()
-        origAddr = xp.xpathEval("originalAddress")[0].getContent()
-        transAddr = xp.xpathEval("translatedAddress")[0].getContent()
-        if isSingleIp(origAddr) and isSingleIp(transAddr):
+        origPort = xp.xpathEval("originalPort")[0].getContent()
+        transPort = xp.xpathEval("translatedPort")[0].getContent()
+        if origPort=='any' and transPort=='any':
             outputStr += (rule.serialize('UTF-8', 1)+'\n')
 
     output(outputStr)

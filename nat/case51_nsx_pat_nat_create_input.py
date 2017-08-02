@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # NAT function test configration of NSX & vSphere environment.
-#
+# PAT NAT: 同时用address和port来映射
 
 # NSX Edge ID, 可在web client-> NSX Edges界面找到
 NSX_EDGE_ID = 'edge-9'
@@ -18,9 +18,9 @@ NSX_NAT_CREATE_REQ_BODY = '''
     <loggingEnabled>false</loggingEnabled>
     <enabled>true</enabled>
     <description>pat nat created by script</description>
-    <protocol>any</protocol>
-    <translatedPort>any</translatedPort>
-    <originalPort>any</originalPort>
+    <protocol>tcp</protocol>
+    <translatedPort>5000</translatedPort>
+    <originalPort>6000</originalPort>
   </natRule>
 </natRules>
 '''

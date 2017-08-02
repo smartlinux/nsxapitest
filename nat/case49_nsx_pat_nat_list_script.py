@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Test script for NAT function.
-# 
+# PAT NAT: 同时用address和port来映射
 
 import sys
 import datetime
@@ -30,9 +30,9 @@ def listPATNATs():
     for rule in rules:
         xp.setContextNode(rule)
         action = xp.xpathEval("action")[0].getContent()
-        origAddr = xp.xpathEval("originalAddress")[0].getContent()
-        transAddr = xp.xpathEval("translatedAddress")[0].getContent()
-        if isIpRange(origAddr) or isIpRange(transAddr):
+        origPort = xp.xpathEval("originalPort")[0].getContent()
+        transPort = xp.xpathEval("translatedPort")[0].getContent()
+        if origPort!='any' or transPort!='any':
             outputStr += (rule.serialize('UTF-8', 1)+'\n')
 
     output(outputStr)

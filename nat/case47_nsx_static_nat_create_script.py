@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Test script for NAT function.
-# 
+# Static NAT: 仅用address来映射，不用port来映射
 
 import sys
 import datetime

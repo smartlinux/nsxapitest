@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Test script for NAT function.
-# 
+# PAT NAT: 同时用address和port来映射
 
 import sys
 import datetime
