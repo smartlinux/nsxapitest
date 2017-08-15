@@ -10,7 +10,7 @@ This is for demo nsx api. Code by python
 
 
 测试终端准备如下：
-1. 测试终端可以是PC机也可以是VM，操作系统为Linux，建议选择带GUI的ubuntu15.10或者centos7，并且能够访问互联网络。
+1. 测试终端可以是PC机也可以是VM，操作系统为Linux，建议选择带GUI的ubuntu15.10或者centos7，双网卡，一个连NSX-Manager和vCenter所在的管理网络，一个连通互联网络。
 2. 确认Linux上已经安装好了python2.7.x，查看命令为： python -V
 3. 确认pip已经安装，查看命令为： pip，如未安装则进行安装（sudo apt-get install python-pip）
 4. 安装python包lxml，安装命令为： sudo pip install lxml，或 sudo apt-get install python-lxml，详情见 https://pypi.python.org/pypi/lxml/3.8.0
