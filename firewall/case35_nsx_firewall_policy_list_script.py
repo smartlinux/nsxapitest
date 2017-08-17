@@ -5,7 +5,7 @@
 # 
 # Firewall Policy 映射到 Distributed Firewall Layer3 Section，下面是属性映射关系:
 #   防火墙规则ID(rule id)、租户ID(所应用的edge的tenantId)、策略名称(section name)
-#   是否共享(所应用的edge的isUniversal)、是否已审计(rule disabled)
+#   是否共享(所应用的edge的isUniversal)、是否已审计(rule logged)
 #
 
 import sys

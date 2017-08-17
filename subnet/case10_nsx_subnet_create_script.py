@@ -19,7 +19,7 @@ restclient = rest.Rest(NSX_IP, NSX_USER, NSX_PWD, True)
 
 
 def createSubnet():
-    respData = restclient.post("%s/api/4.0/edges/%s/interfaces?action=patch"%(NSX_URL,NSX_SUBNET_EDGE_ID), 
+    respData = restclient.post("%s/api/4.0/edges/%s/vnics?action=patch"%(NSX_URL,NSX_SUBNET_EDGE_ID), 
         NSX_SUBNET_CREATE_REQ_BODY, 'createSubnet')
     output(restclient.getDebugInfo() + restclient.prettyPrint(respData))
 

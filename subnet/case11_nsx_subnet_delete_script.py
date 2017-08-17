@@ -19,7 +19,7 @@ restclient = rest.Rest(NSX_IP, NSX_USER, NSX_PWD, True)
 
 
 def deleteSubnet():
-    respData = restclient.delete("%s/api/4.0/edges/%s/interfaces/%s"%(NSX_URL,NSX_SUBNET_EDGE_ID,NSX_SUBNET_DELETE_INDEX), 'deleteSubnet')
+    respData = restclient.delete("%s/api/4.0/edges/%s/vnics/%s"%(NSX_URL,NSX_SUBNET_EDGE_ID,NSX_SUBNET_DELETE_INDEX), 'deleteSubnet')
     output(restclient.getDebugInfo() + restclient.prettyPrint(respData))
 
 

@@ -20,7 +20,7 @@ restclient = rest.Rest(NSX_IP, NSX_USER, NSX_PWD, True)
 def createNetwork():
     respData = restclient.post(NSX_URL+'/api/2.0/vdn/scopes/'+NSX_NETWORK_CREATE_SCOPE_ID+'/virtualwires', 
         NSX_NETWORK_CREATE_REQ_BODY, 'createNetwork')
-    output(restclient.getDebugInfo() + restclient.prettyPrint(respData))
+    output(restclient.getDebugInfo() + respData)
 
 
 def output(msg):

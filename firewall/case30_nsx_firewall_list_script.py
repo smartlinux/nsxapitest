@@ -5,7 +5,7 @@
 # 
 # Firewall 映射到 Edge Firewall，下面是属性映射关系:
 #   防火墙ID(edgeSummary->objectId)、租户ID(tenantId)、防火墙名称(edgeSummary->name)、
-#   管理状态(firewall->enabled)、是否共享(isUniversal)、防火墙策略ID()
+#   管理状态(firewall->enabled)、是否共享(isUniversal)、防火墙策略ID(rule id)
 #
 
 import sys

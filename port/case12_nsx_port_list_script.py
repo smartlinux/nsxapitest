@@ -71,6 +71,10 @@ def listPorts():
     
     outputstr += "\n\n\nTake out %d ports from vSphere and NSX API response:\n"%(len(ports))
     outputstr += json.dumps(ports, sort_keys=True, indent=4, separators=(',',': '))
+
+    respData2 = restclient.get(NSX_URL+'/api/4.0/services/spoofguard/spoofguardpolicy-2?list=ACTIVE', 'listPorts')
+    outputstr += restclient.getDebugInfo() + restclient.prettyPrint(respData2)
+
     output(outputstr)
     return True
 

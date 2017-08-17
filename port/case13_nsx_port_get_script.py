@@ -79,6 +79,9 @@ def getPort():
                     port['macAddress'] = dev.macAddress
                     port['deviceid'] = "%s.%s"%(vm.config.instanceUuid, str(dev.key)[-3:])
                     outputstr += json.dumps(port, sort_keys=True, indent=4, separators=(',',': '))
+
+                    respData2 = restclient.get(NSX_URL+'/api/4.0/services/spoofguard/spoofguardpolicy-4?list=ACTIVE', 'listPorts')
+                    outputstr += restclient.getDebugInfo() + restclient.prettyPrint(respData2)
                     output(outputstr)
                     return True
     
