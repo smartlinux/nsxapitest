@@ -41,10 +41,10 @@ def getPort():
 
     # get ls object by NSX API
     respData = restclient.get(NSX_URL+'/api/2.0/vdn/virtualwires/'+lsId, 'getPort')
-    outputstr = restclient.getDebugInfo() + restclient.prettyPrint(respData)
+    #outputstr = restclient.getDebugInfo() + restclient.prettyPrint(respData)
 
     # get port group list by vSphere API
-    outputstr += "\nTry to get backing port info by vSphere API:\n"
+    outputstr = "\nTry to get backing port info by vSphere API:\n"
     dpgMap = getPortGroupMap()
     outputstr += str(dpgMap)
     
@@ -81,7 +81,7 @@ def getPort():
                     outputstr += json.dumps(port, sort_keys=True, indent=4, separators=(',',': '))
 
                     respData2 = restclient.get(NSX_URL+'/api/4.0/services/spoofguard/spoofguardpolicy-4?list=ACTIVE', 'listPorts')
-                    outputstr += restclient.getDebugInfo() + restclient.prettyPrint(respData2)
+                    outputstr += '\n\n' + restclient.getDebugInfo() + restclient.prettyPrint(respData2)
                     output(outputstr)
                     return True
     

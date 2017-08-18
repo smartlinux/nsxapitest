@@ -3,6 +3,8 @@
 #
 # Test script for securitygroup function.
 # 
+# securitygroup map to NSX security policy, below is attributes mapping relationship:
+#   ID(objectId)、名称(name)、租户ID(绑定到network时，取network的tenantId)
 
 
 import sys

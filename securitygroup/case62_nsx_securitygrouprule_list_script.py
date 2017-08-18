@@ -2,7 +2,9 @@
 # -*- coding: utf-8 -*-
 #
 # Test script for securitygroup function.
-# 
+#
+# ID(action.objectId)、方向(direction)、协议(applicationProtocol)、端口范围(value)、对端IP(secondarySecurityGroup)
+# 安全组ID(securityPolicy.objectId)、租户ID(绑定到network时，取network的tenantId)
 
 
 import sys
@@ -28,7 +30,8 @@ restclient = rest.Rest(NSX_IP, NSX_USER, NSX_PWD, True)
 
 
 def listSecurityGroupRule():
-    respData = restclient.get(NSX_URL+'/api/2.0/services/policy/securitypolicy/'+NSX_SECURITYGROUP_GET_ID, 'listSecurityGroupRule')
+    respData = restclient.get('%s/api/2.0/services/policy/securitypolicy/%s'%(NSX_URL,
+    	NSX_SECURITYGROUP_GET_ID), 'listSecurityGroupRule')
 
     output(restclient.getDebugInfo() + restclient.prettyPrint(respData))
 

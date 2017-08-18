@@ -24,6 +24,10 @@ def listTransZones():
     respData = restclient.get(NSX_URL+'/api/2.0/vdn/scopes', 'listTransZones')
     print(restclient.prettyPrint(respData))
 
+def listSpoofGuards():
+    respData = restclient.get(NSX_URL+'/api/4.0/services/spoofguard/policies/', 'listSpoofGuards')
+    print(restclient.prettyPrint(respData))
+
 
 # single IP example: 192.168.100.2
 def isSingleIp(address):
@@ -36,7 +40,7 @@ def isIpRange(address):
 
 
 def usage():
-    print "Usage:", sys.argv[0], "--api <listTransZones>"
+    print "Usage:", sys.argv[0], "--api <listTransZones|listSpoofGuards>"
 
 
 def main():
@@ -57,6 +61,9 @@ def main():
     
     if apiName == "listTransZones":
         listTransZones()
+
+    elif apiName == "listSpoofGuards":
+        listSpoofGuards()
 
     else:
         print "option", apiName, "not recognized"

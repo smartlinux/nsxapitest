@@ -5,7 +5,7 @@
 #
 
 #指定securitygroup ID
-NSX_SECURITYGROUP_GET_ID ='policy-5'
+NSX_SECURITYGROUP_GET_ID ='policy-7'
 
 #指定需要获取的rule ID
 NSX_RULE_GET_ID ='firewallpolicyaction-1'

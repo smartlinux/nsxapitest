@@ -3,6 +3,8 @@
 #
 # Test script for securitygroup function.
 # 
+# ID(action.objectId)、方向(direction)、协议(applicationProtocol)、端口范围(value)、对端IP(secondarySecurityGroup)
+# 安全组ID(securityPolicy.objectId)、租户ID(绑定到network时，取network的tenantId)
 
 
 import sys
