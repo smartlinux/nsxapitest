@@ -41,35 +41,36 @@ restclient = rest.Rest(NSX_IP, NSX_USER, NSX_PWD, True)
 payload = '<natRules> '
 base = 0
 
+
 def createpayloadOne(origAddr, tranAddr, ruleDesc):
     global payload
     NSX_DNAT_RULE_CREATE_DATA = NSX_DNAT_RULE_CREATE_DATA_O.format(orig_addr=origAddr,tran_addr=tranAddr,rule_desc=ruleDesc)
     payload = payload +  NSX_DNAT_RULE_CREATE_DATA 
 
-	
+    
 def createpayload250(subnetId):
     global base
-    for num in range(1,250):
-	    base = base + 1
+    for num in range(1,251):
+        base = base + 1
         origAddr = '2.1.%d.%d'%(subnetId, num)
         tranAddr = '20.1.%d.%d'%(subnetId, num)
         ruleDesc="test rule id %d"%(base)
         createpayloadOne(origAddr, tranAddr, ruleDesc)
 
-		
+
 def createDnatRule5000():
     global payload
 
     URL = '%s/api/4.0/edges/%s/nat/config/rules'%(NSX_URL,EDGE_ID)
     print URL
 
-    for subnetid in range(2,21):
-        print 'Try to create DNAT from origAddr 2.1.%d.x to tranAddr 20.1.%d.x'%(subnetid)
+    for subnetid in range(2,22):
+        print 'Try to create DNAT from origAddr 2.1.%d.x to tranAddr 20.1.%d.x'%(subnetid,subnetid)
         payload ='<natRules>'
         createpayload250(subnetid)
         payload = payload + '</natRules>'
         respData = restclient.post(URL, payload, 'createDnat250')
-        print 'DNAT from origAddr 2.1.%d.x to tranAddr 20.1.%d.x created.'%(subnetid)
+        print 'DNAT from origAddr 2.1.%d.x to tranAddr 20.1.%d.x created.'%(subnetid,subnetid)
 
 
 def main():

@@ -67,9 +67,6 @@ def listPorts():
                         port['tenantId'] = tenantId
                         port['enablesecurity'] = False
                         port['qosTag'] = dpg.config.defaultPortConfig.qosTag.value
-                        shaping = vm.config.networkShaper
-                        if shaping != None:
-                            port['shaping'] = "enabled:%s,peakBps:%s,averageBps:%s"%(shaping.enabled,shaping.peakBps,shaping.averageBps)
                         ports.append(port)
     
     outputstr += "\n\n\nTake out %d ports from vSphere and NSX API response:\n"%(len(ports))
