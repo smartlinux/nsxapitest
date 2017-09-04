@@ -26,8 +26,8 @@ def listSubnets():
     respData = restclient.get("%s/api/4.0/edges/%s/vnics"%(NSX_URL,NSX_SUBNET_EDGE_ID), 'listSubnets')
     respDebugInfo = restclient.getDebugInfo()
 
-    # output DHCP relay configuration, which can figure out subnet is DHCP enabled or not
-    respData2 = restclient.get("%s/api/4.0/edges/%s/dhcp/config/relay"%(NSX_URL,NSX_SUBNET_EDGE_ID), 'listSubnets')
+    # output DHCP configuration, which can figure out subnet is DHCP enabled or not
+    respData2 = restclient.get("%s/api/4.0/edges/%s/dhcp/config"%(NSX_URL,NSX_SUBNET_EDGE_ID), 'listSubnets')
     respDebugInfo2 = restclient.getDebugInfo()
 
     respDoc = libxml2.parseDoc(respData)

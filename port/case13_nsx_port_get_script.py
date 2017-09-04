@@ -78,6 +78,20 @@ def getPort():
                     port['state'] = 'connected' if dev.connectable.connected else 'disconnected'
                     port['macAddress'] = dev.macAddress
                     port['deviceid'] = "%s.%s"%(vm.config.instanceUuid, str(dev.key)[-3:])
+
+                    dvs = dpg.config.distributedVirtualSwitch
+                    portCriteria = vim.dvs.PortCriteria()
+                    portCriteria.portKey = [portKey]
+                    dvPorts = dvs.FetchDVPorts(portCriteria)
+                    ciShapping = dvPorts[0].config.setting.inShapingPolicy 
+                    coShapping = dvPorts[0].config.setting.outShapingPolicy 
+                    if ciShapping!=None:
+                        port['inShaping'] = "enabled:%s,averageBps:%s,peakBps:%s"% \
+                        (ciShapping.enabled.value,ciShapping.averageBandwidth.value,ciShapping.peakBandwidth.value)
+                    if coShapping!=None:
+                        port['outShaping'] = "enabled:%s,averageBps:%s,peakBps:%s"% \
+                        (coShapping.enabled.value,coShapping.averageBandwidth.value,coShapping.peakBandwidth.value)
+            
                     outputstr += json.dumps(port, sort_keys=True, indent=4, separators=(',',': '))
 
                     respData2 = restclient.get(NSX_URL+'/api/4.0/services/spoofguard/spoofguardpolicy-4?list=ACTIVE', 'listPorts')
